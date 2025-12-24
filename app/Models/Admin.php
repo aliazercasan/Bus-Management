@@ -14,4 +14,8 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password',
     ];
+    public function rejection()
+    {
+        return $this->hasMany(DriverRejection::class);
+    }
 }

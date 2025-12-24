@@ -41,7 +41,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Protected Admin Routes
     Route::middleware('auth:admin')->group(function () {
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-        Route::post('driver/delete', [AdminController::class, 'deleteDriver'])->name('driver.delete');
+        Route::get('driver/view/{id}', [AdminController::class, 'viewDriver'])->name('driver.view');
+        Route::post('driver/approve/{id}', [AdminController::class, 'approveDriver'])->name('driver.approve');
+        Route::post('driver/reject/{id}', [AdminController::class, 'rejectDriver'])->name('driver.reject');
         
         // Bus Management
         Route::get('bus/create', [BusController::class, 'create'])->name('bus.create');

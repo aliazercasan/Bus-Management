@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'busID',
+        'status',
     ];
 
     /**
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function driverDetail()
     {
         return $this->hasOne(DriverDetail::class);
+    }
+
+    public function rejection()
+    {
+        return $this->hasOne(DriverRejection::class);
     }
 }
