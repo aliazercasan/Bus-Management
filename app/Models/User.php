@@ -19,12 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
-        'firstname',
-        'lastname',
-        'age',
         'contactNumber',
-        'address',
         'email',
         'password',
         'busID',
@@ -56,5 +51,10 @@ class User extends Authenticatable
     public function bus()
     {
         return $this->belongsTo(Bus::class, 'busID', 'busID');
+    }
+
+    public function driverDetail()
+    {
+        return $this->hasOne(DriverDetail::class);
     }
 }

@@ -9,7 +9,7 @@ use App\Http\Controllers\BusController;
 use App\Http\Controllers\RouteController;
 
 Route::get('/', function () {
-    return redirect()->route('driver.login');
+    return view('welcome');
 });
 
 // Driver Authentication Routes
@@ -21,7 +21,7 @@ Route::prefix('driver')->name('driver.')->group(function () {
     Route::post('logout', [DriverAuthController::class, 'logout'])->name('logout');
     
     // Protected Driver Routes
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'check.driver.status'])->group(function () {
         Route::get('dashboard', [DriverController::class, 'dashboard'])->name('dashboard');
         Route::get('search', [DriverController::class, 'search'])->name('search');
         Route::get('report', [DriverController::class, 'showReportForm'])->name('report');
