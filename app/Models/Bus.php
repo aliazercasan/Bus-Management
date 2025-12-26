@@ -23,7 +23,12 @@ class Bus extends Model
 
     public function routeInfo()
     {
-        return $this->belongsTo(Route::class, 'route', 'routeID');
+        return $this->belongsTo(Route::class, 'route', 'id');
+    }
+
+    public function busInfo()
+    {
+        return $this->belongsTo(BusInfo::class, 'busID', 'id');
     }
 
     public function users()

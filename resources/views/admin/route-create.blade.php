@@ -44,31 +44,47 @@
             <form action="{{ route('admin.route.store') }}" method="POST" class="space-y-6">
                 @csrf
                 <div>
-                    <label for="routeID" class="block text-sm font-medium text-gray-700 mb-2">Route ID</label>
-                    <input type="text" name="routeID" id="routeID" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                        placeholder="e.g., R001">
-                </div>
-
-                <div>
                     <label for="routeFrom" class="block text-sm font-medium text-gray-700 mb-2">Route From</label>
-                    <input type="text" name="routeFrom" id="routeFrom" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                        placeholder="Starting location">
+                    <select name="routeFrom" id="routeFrom" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                        <option value="">Select starting location</option>
+                        <option value="Digos City">Digos City</option>
+                        <option value="Davao City">Davao City</option>
+                        <option value="Bansalan">Bansalan</option>
+                        <option value="Hagonoy">Hagonoy</option>
+                        <option value="Kiblawan">Kiblawan</option>
+                        <option value="Magsaysay">Magsaysay</option>
+                        <option value="Malalag">Malalag</option>
+                        <option value="Matanao">Matanao</option>
+                        <option value="Padada">Padada</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Sulop">Sulop</option>
+                    </select>
                 </div>
 
                 <div>
                     <label for="routeTo" class="block text-sm font-medium text-gray-700 mb-2">Route To</label>
-                    <input type="text" name="routeTo" id="routeTo" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                        placeholder="Destination">
+                    <select name="routeTo" id="routeTo" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                        <option value="">Select destination</option>
+                        <option value="Digos City">Digos City</option>
+                        <option value="Davao City">Davao City</option>
+                        <option value="Bansalan">Bansalan</option>
+                        <option value="Hagonoy">Hagonoy</option>
+                        <option value="Kiblawan">Kiblawan</option>
+                        <option value="Magsaysay">Magsaysay</option>
+                        <option value="Malalag">Malalag</option>
+                        <option value="Matanao">Matanao</option>
+                        <option value="Padada">Padada</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Sulop">Sulop</option>
+                    </select>
                 </div>
 
                 <div>
-                    <label for="oras" class="block text-sm font-medium text-gray-700 mb-2">Time</label>
-                    <input type="text" name="oras" id="oras" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                        placeholder="e.g., 08:00 AM">
+                    <label for="oras" class="block text-sm font-medium text-gray-700 mb-2">Departure Time</label>
+                    <input type="time" name="oras" id="oras" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
                 </div>
 
                 <button type="submit" 

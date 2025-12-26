@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('routes', function (Blueprint $table) {
-            $table->string('routeID')->primary();
+            $table->id();
             $table->string('routeFrom');
             $table->string('routeTo');
             $table->string('oras');

@@ -53,8 +53,10 @@ class DriverAuthController extends Controller
 
         // Create user account
         $user = User::create([
+            'name' => $validated['firstname'] . ' ' . $validated['lastname'],
             'password' => Hash::make($validated['password']),
             'email' => $validated['email'],
+            'role' => 'driver'
         ]);
 
         // Handle resume file upload

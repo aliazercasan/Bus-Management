@@ -12,13 +12,13 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $users = User::with(['bus.routeInfo', 'driverDetail'])->get();
+        $users = User::with(['bus.routeInfo', 'bus.busInfo', 'driverDetail'])->get();
         return view('admin.dashboard', compact('users'));
     }
 
     public function viewDriver($id)
     {
-        $user = User::with(['bus.routeInfo', 'driverDetail'])->findOrFail($id);
+        $user = User::with(['bus.routeInfo', 'bus.busInfo', 'driverDetail'])->findOrFail($id);
         return view('admin.driver-view', compact('user'));
     }
 

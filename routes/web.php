@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\BusInfoController;
 use App\Http\Controllers\RouteController;
 
 Route::get('/', function () {
@@ -48,6 +49,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Bus Management
         Route::get('bus/create', [BusController::class, 'create'])->name('bus.create');
         Route::post('bus/store', [BusController::class, 'store'])->name('bus.store');
+        
+        // Bus Info Management
+        Route::get('businfo/create', [BusInfoController::class, 'create'])->name('businfo.create');
+        Route::post('businfo/store', [BusInfoController::class, 'store'])->name('businfo.store');
         
         // Route Management
         Route::get('route/create', [RouteController::class, 'create'])->name('route.create');

@@ -70,8 +70,24 @@
                     </div>
 
                     <div>
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase">Bus Name</h3>
+                        <p class="mt-1 text-lg text-gray-900">{{ $user->bus->busInfo->busName ?? 'Not Assigned' }}</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase">Engine Number</h3>
+                        <p class="mt-1 text-lg text-gray-900">{{ $user->bus->busInfo->engineNumber ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
                         <h3 class="text-sm font-semibold text-gray-500 uppercase">Route</h3>
-                        <p class="mt-1 text-lg text-gray-900">{{ $user->bus->route ?? 'N/A' }}</p>
+                        <p class="mt-1 text-lg text-gray-900">
+                            @if($user->bus && $user->bus->routeInfo)
+                                {{ $user->bus->routeInfo->routeFrom }} → {{ $user->bus->routeInfo->routeTo }}
+                            @else
+                                N/A
+                            @endif
+                        </p>
                     </div>
 
                     <div>

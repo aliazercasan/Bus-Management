@@ -12,6 +12,9 @@
                 <a href="{{ route('admin.dashboard') }}" class="text-white hover:bg-white/10 px-4 py-2 rounded-lg transition duration-200 font-medium">
                     Dashboard
                 </a>
+                <a href="{{ route('admin.businfo.create') }}" class="text-white hover:bg-white/10 px-4 py-2 rounded-lg transition duration-200 font-medium">
+                    Create Bus
+                </a>
                 <a href="{{ route('admin.bus.create') }}" class="text-white hover:bg-white/10 px-4 py-2 rounded-lg transition duration-200 font-medium">
                     Assign Bus
                 </a>

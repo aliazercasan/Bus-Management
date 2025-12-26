@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
-    protected $primaryKey = 'routeID';
-    public $incrementing = false;
-    protected $keyType = 'string';
-    
     protected $fillable = [
-        'routeID',
         'routeFrom',
         'routeTo',
         'oras'
@@ -19,6 +14,6 @@ class Route extends Model
 
     public function buses()
     {
-        return $this->hasMany(Bus::class, 'route', 'routeID');
+        return $this->hasMany(Bus::class, 'route', 'id');
     }
 }

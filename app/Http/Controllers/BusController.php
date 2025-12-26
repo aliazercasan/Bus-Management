@@ -11,29 +11,36 @@ class BusController extends Controller
     {
         $approvedDrivers = \App\Models\User::where('status', 'approved')
             ->whereNull('busID')
+            ->with('driverDetail')
             ->get();
-        return view('admin.bus-create', compact('approvedDrivers'));
+        
+        $busInfos = \App\Models\BusInfo::all();
+        $routes = \App\Models\Route::all();
+        
+        return view('admin.bus-create', compact('approvedDrivers', 'busInfos', 'routes'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'busID' => 'required|integer|unique:buses,busID|min:101',
-            'route' => 'required|string|exists:routes,routeID',
-            'passengerCapacity' => 'required|integer',
+            'bus_info_id' => 'required|exists:bus_infos,id',
+            'route' => 'required|integer|exists:routes,id',
             'driver_id' => 'nullable|exists:users,id',
         ]);
 
+        // Get the selected bus info
+        $busInfo = \App\Models\BusInfo::findOrFail($validated['bus_info_id']);
+
         Bus::create([
-            'busID' => $validated['busID'],
+            'busID' => $busInfo->id,
             'route' => $validated['route'],
-            'passengerCapacity' => $validated['passengerCapacity'],
+            'passengerCapacity' => $busInfo->passengerCapacity,
         ]);
 
         // If a driver is assigned, update the driver's busID
         if ($request->driver_id) {
             \App\Models\User::where('id', $request->driver_id)
-                ->update(['busID' => $validated['busID']]);
+                ->update(['busID' => $busInfo->id]);
         }
 
         return redirect()->route('admin.dashboard')->with('success', 'Bus Assigned Successfully');

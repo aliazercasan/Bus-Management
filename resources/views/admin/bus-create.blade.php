@@ -44,24 +44,62 @@
             <form action="{{ route('admin.bus.store') }}" method="POST" class="space-y-6">
                 @csrf
                 <div>
-                    <label for="busID" class="block text-sm font-medium text-gray-700 mb-2">Bus ID</label>
-                    <input type="number" name="busID" id="busID" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                        placeholder="e.g., 101">
+                    <label for="bus_info_id" class="block text-sm font-medium text-gray-700 mb-2">
+                        Select Bus <span class="text-red-500">*</span>
+                    </label>
+                    <select name="bus_info_id" id="bus_info_id" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                        <option value="">Select a bus</option>
+                        @foreach($busInfos as $busInfo)
+                            <option value="{{ $busInfo->id }}">
+                                {{ $busInfo->busName }} (Engine: {{ $busInfo->engineNumber }}, Capacity: {{ $busInfo->passengerCapacity }})
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('bus_info_id')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                    @if($busInfos->isEmpty())
+                        <p class="mt-2 text-sm text-amber-600">
+                            No buses available. Please <a href="{{ route('admin.businfo.create') }}" class="underline font-medium">create a bus</a> first.
+                        </p>
+                    @endif
                 </div>
 
                 <div>
-                    <label for="route" class="block text-sm font-medium text-gray-700 mb-2">Route ID</label>
-                    <input type="text" name="route" id="route" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                        placeholder="e.g., R001">
+                    <label for="driver_id" class="block text-sm font-medium text-gray-700 mb-2">Driver</label>
+                    <select name="driver_id" id="driver_id"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                        <option value="">Select a driver</option>
+                        @foreach($approvedDrivers as $driver)
+                            <option value="{{ $driver->id }}">
+                                {{ $driver->driverDetail->firstname ?? '' }} {{ $driver->driverDetail->lastname ?? '' }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div>
-                    <label for="passengerCapacity" class="block text-sm font-medium text-gray-700 mb-2">Passenger Capacity</label>
-                    <input type="number" name="passengerCapacity" id="passengerCapacity" required
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                        placeholder="e.g., 50">
+                    <label for="route" class="block text-sm font-medium text-gray-700 mb-2">
+                        Select Route <span class="text-red-500">*</span>
+                    </label>
+                    <select name="route" id="route" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                        <option value="">Select a route</option>
+                        @foreach($routes as $route)
+                            <option value="{{ $route->id }}">
+                                {{ $route->routeFrom }} → {{ $route->routeTo }} ({{ $route->oras }})
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('route')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                    @if($routes->isEmpty())
+                        <p class="mt-2 text-sm text-amber-600">
+                            No routes available. Please <a href="{{ route('admin.route.create') }}" class="underline font-medium">create a route</a> first.
+                        </p>
+                    @endif
                 </div>
 
                 <button type="submit" 

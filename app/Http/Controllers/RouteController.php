@@ -15,7 +15,6 @@ class RouteController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'routeID' => 'required|string|unique:routes,routeID',
             'routeFrom' => 'required|string',
             'routeTo' => 'required|string',
             'oras' => 'required|string',
